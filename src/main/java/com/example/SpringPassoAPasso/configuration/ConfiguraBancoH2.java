@@ -11,6 +11,7 @@ import org.springframework.context.annotation.Profile;
 import com.example.SpringPassoAPasso.entities.Category;
 import com.example.SpringPassoAPasso.entities.Order;
 import com.example.SpringPassoAPasso.entities.OrderItem;
+import com.example.SpringPassoAPasso.entities.Payment;
 import com.example.SpringPassoAPasso.entities.Product;
 import com.example.SpringPassoAPasso.entities.User;
 import com.example.SpringPassoAPasso.entities.enumns.OrderStatus;
@@ -91,6 +92,15 @@ public class ConfiguraBancoH2 implements CommandLineRunner {
 		OrderItem oi4 = new OrderItem(o3, p5, p1.getPrice(), 2);
 
 		OrderItemRepository.saveAll(Arrays.asList(oi1, oi2, oi3, oi4));
+		
+		
+		
+		//----------------Criando pagamentos e fazendo a assciação com os pedidos
+		// vemos acima que o1 está status Payment,   vamos fazer para manter a coerencia.
+		
+		Payment pay1 = new Payment(null,Instant.parse("2019-06-20T21:53:07Z"), o1);
+		o1.setPayment(pay1);
+		orderRepository.save(o1);// O pay1 vai ser gravado automático pelo JPA.
 
 	}
 
