@@ -11,7 +11,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "Tb_Itens")
-public class OrderItem implements Serializable{
+public class OrderItem implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@EmbeddedId
@@ -63,6 +63,10 @@ public class OrderItem implements Serializable{
 
 	public void setProduct(Product product) {
 		id.setProduct(product);
+	}
+
+	public Double getSubTotal() {
+		return price * quantity;
 	}
 
 	@Override
